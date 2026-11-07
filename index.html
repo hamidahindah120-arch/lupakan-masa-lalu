@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Past Not Found</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  background: radial-gradient(ellipse at bottom, #19152f, #080812 75%);
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(2px 2px at 70% 60%, white, transparent),
+    radial-gradient(1px 1px at 40% 80%, white, transparent),
+    radial-gradient(2px 2px at 85% 20%, white, transparent);
+  background-size: 180px 180px;
+  animation: sparkle 5s linear infinite;
+}
+
+@keyframes sparkle {
+  from { transform: translateY(-20px); opacity: .5; }
+  to { transform: translateY(20px); opacity: 1; }
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 25px;
+  max-width: 550px;
+}
+
+.label {
+  color: #b9a5ff;
+  letter-spacing: 5px;
+  font-size: 11px;
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: clamp(45px, 10vw, 76px);
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #fff, #a78bfa);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  color: #aaa5bf;
+  line-height: 1.8;
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+
+button {
+  padding: 15px 28px;
+  border: 1px solid #a78bfa;
+  background: transparent;
+  color: white;
+  border-radius: 30px;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: .3s;
+}
+
+button:hover {
+  background: #a78bfa;
+  color: #090812;
+  box-shadow: 0 0 25px #a78bfa;
+}
+
+.progress-box {
+  margin-top: 30px;
+  display: none;
+}
+
+.bar {
+  height: 5px;
+  background: #302a48;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+.fill {
+  width: 0%;
+  height: 100%;
+  background: #b9a5ff;
+  transition: width .3s;
+}
+
+#message {
+  color: #c9b9ff;
+  font-size: 13px;
+  margin-top: 15px;
+  line-height: 1.7;
+}
+
+footer {
+  margin-top: 45px;
+  color: #66617e;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+</style>
+</head>
+
+<body>
+<div class="stars"></div>
+
+<div class="container">
+  <div class="label">PERSONAL HEALING SYSTEM</div>
+
+  <h1>404</h1>
+
+  <p class="subtitle">
+    The person you're looking for<br>
+    is no longer available.
+    <br><br>
+    Maybe it's time to stop looking back.
+  </p>
+
+  <button onclick="heal()">
+    INITIATE HEALING PROCESS
+  </button>
+
+  <div class="progress-box" id="progressBox">
+    <p id="status">Preparing to move on...</p>
+    <div class="bar">
+      <div class="fill" id="fill"></div>
+    </div>
+    <p id="message"></p>
+  </div>
+
+  <footer>YOUR FUTURE IS WAITING FOR YOU ✦</footer>
+</div>
+
+<script>
+function heal() {
+  const box = document.getElementById("progressBox");
+  const fill = document.getElementById("fill");
+  const status = document.getElementById("status");
+  const message = document.getElementById("message");
+  const button = document.querySelector("button");
+
+  const steps = [
+    "Deleting old memories...",
+    "Removing unnecessary expectations...",
+    "Clearing old conversations...",
+    "Restoring self-worth...",
+    "Installing new happiness..."
+  ];
+
+  let progress = 0;
+
+  box.style.display = "block";
+  button.disabled = true;
+
+  const interval = setInterval(() => {
+    progress += 2;
+    fill.style.width = progress + "%";
+
+    if (progress % 20 === 0) {
+      status.innerText = steps[progress / 20 - 1] || "Almost there...";
+    }
+
+    if (progress >= 100) {
+      clearInterval(interval);
+      status.innerText = "PROCESS COMPLETED!";
+      message.innerHTML =
+        "Congratulations! You survived another chapter. ❤️<br><br>" +
+        "Your past is a lesson, not your permanent address.";
+      button.innerText = "NEW CHAPTER UNLOCKED";
+      button.disabled = false;
+      button.onclick = () => location.reload();
+    }
+  }, 100);
+}
+</script>
+
+</body>
+</html>
